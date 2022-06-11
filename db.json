@@ -36,51 +36,19 @@
       "level": "mandatory"
     },
     {
+      "title": "Nigeria",
+      "level": "intermidiate",
       "id": 8
     },
     {
+      "title": "Going to market",
+      "level": "easy",
       "id": 9
     },
     {
+      "title": "having a my breakfast",
+      "level": "easy",
       "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    },
-    {
-      "id": 19
-    },
-    {
-      "id": 20
-    },
-    {
-      "id": 21
-    },
-    {
-      "title": "Nigeria",
-      "level": "intermidiate",
-      "id": 22
     }
   ]
 }

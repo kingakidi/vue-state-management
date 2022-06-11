@@ -55,13 +55,16 @@ export default {
         this.clean(this.sendTodo.level) > 0
       ) {
         // this.error = "YOu are good to go ";
-        axios.post("http://localhost:3000/todos", {
-            title: this.sendTodo.todo, 
-            level: this.sendTodo.level
-        }
-        ).then((res) => {
-          console.log(res);
-        });
+        axios
+          .post("http://localhost:3000/todos", {
+            title: this.sendTodo.todo,
+            level: this.sendTodo.level,
+          })
+          .then((res) => {
+            if (res.status === 201) {
+              this.$store.commit("getAllTodo");
+            }
+          });
       } else {
         this.error = "All fields required";
       }
