@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form action="" class="todo-form" id="todo" @submit.prevent="addTodo">
+    <form action="" class="todo-form" @submit.prevent="addTodo">
       <div>
-        <input type="text" placeholder="Enter Todo" v-model="todo.todo" />
+        <input type="text" placeholder="Enter Todo" v-model="sendTodo.todo" />
       </div>
       <div>
-        <select name="" id="" v-model="todo.level">
+        <select name="" id="" v-model="sendTodo.level">
           <option value="" selected disabled>Select Level</option>
           <option value="hard">Hard</option>
           <option value="intermidiate">Intermidiate</option>
@@ -17,17 +17,21 @@
       </div>
 
       {{ error }}
-      {{ getUsername }}
+
+      <div v-for="todo in getAllTodos" :key="todo.id">
+        {{ todo.title }}
+      </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Todo",
   data() {
     return {
-      todo: {
+      sendTodo: {
         todo: "",
         level: "",
       },
@@ -35,8 +39,8 @@ export default {
     };
   },
   computed: {
-    getUsername() {
-      return this.$store.state.username;
+    getAllTodos() {
+      return this.$store.state.allTodos;
     },
   },
   methods: {
@@ -45,15 +49,26 @@ export default {
     },
     addTodo() {
       this.error = "";
-
-      if (this.clean(this.todo.todo) > 0 && this.clean(this.todo.level) > 0) {
-        this.error = "YOu are good to go ";
+      console.log(this.sendTodo);
+      if (
+        this.clean(this.sendTodo.todo) > 0 &&
+        this.clean(this.sendTodo.level) > 0
+      ) {
+        // this.error = "YOu are good to go ";
+        axios.post("http://localhost:3000/todos", {
+            title: this.sendTodo.todo, 
+            level: this.sendTodo.level
+        }
+        ).then((res) => {
+          console.log(res);
+        });
       } else {
         this.error = "All fields required";
       }
     },
-
-    getAllTodo() {},
+  },
+  mounted() {
+    // this.$store.commit("getAllTodo");
   },
 };
 </script>
